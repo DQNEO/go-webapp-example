@@ -34,4 +34,3 @@ func GetHelloHTML(w http.ResponseWriter, r *http.Request) {
 func GetHelloJson(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, `{"msg":"hello"}`)
 }
-

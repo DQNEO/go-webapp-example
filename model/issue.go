@@ -6,8 +6,8 @@ type Issue struct {
 }
 
 var issues = []Issue{
-	{Id:1, Name:"I need a help"},
-	{Id:2, Name:"I need another help"},
+	{Id: 1, Name: "I need a help"},
+	{Id: 2, Name: "I need another help"},
 }
 
 type e string
@@ -17,16 +17,16 @@ func (s e) Error() string {
 }
 
 func FindIssue(id int) (Issue, error) {
-	for _, issue := range(issues) {
+	for _, issue := range issues {
 		if issue.Id == id {
-			return issue,nil
+			return issue, nil
 		}
 	}
 	var e e
 	e = "error"
-	return Issue{},e
+	return Issue{}, e
 }
 
 func GetIssues() []Issue {
-	return issues;
+	return issues
 }

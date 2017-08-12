@@ -3,7 +3,7 @@ package route
 import "net/http"
 import "../handler"
 
-func Get(path string , h func(http.ResponseWriter, *http.Request)) {
+func Get(path string, h func(http.ResponseWriter, *http.Request)) {
 	http.HandleFunc(path, h)
 }
 
@@ -14,4 +14,3 @@ func Register() {
 	Get("/issues", handler.GetIssues)
 	Get("/issues/1", handler.GetIssue1)
 }
-
