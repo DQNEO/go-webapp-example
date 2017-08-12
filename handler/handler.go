@@ -26,7 +26,14 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetIssues(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `%v`, model.GetIssues)
+	issues := model.GetIssues()
+	b, err := json.Marshal(issues)
+	if err != nil {
+		w.WriteHeader(500)
+		w.Write([]byte(err.Error()))
+	}
+
+	w.Write(b)
 }
 
 func GetHello(w http.ResponseWriter, r *http.Request) {
