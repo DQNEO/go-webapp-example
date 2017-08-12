@@ -15,8 +15,32 @@ var issues = []Issue{
 	{Id:2, Name:"I need another help"},
 }
 
+type e string
+
+func (s e) Error() string {
+	return string(s)
+}
+
+func FindIssue(id int) (Issue, error) {
+	for id, issue := range(issues) {
+		if issue.Id == id {
+			return issue,nil
+		}
+	}
+	var e e
+	e = "error"
+	return Issue{},e
+}
+
 func GetIssue1(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `%v`, issues[0])
+	id := 1
+	issue, err := FindIssue(id)
+	if err != nil {
+		w.Write([]byte("Record Not Found"))
+		w.WriteHeader(404)
+		return
+	}
+	fmt.Fprintf(w, `%v`, issue)
 }
 
 func GetIssues(w http.ResponseWriter, r *http.Request) {
