@@ -4,7 +4,7 @@ import "net/http"
 import "../handler"
 
 func Get(path string, h func(http.ResponseWriter, *http.Request)) {
-	http.DefaultServeMux.HandleFunc(path, h)
+	http.DefaultServeMux.Handle(path, http.HandlerFunc(h))
 }
 
 func Register() {
