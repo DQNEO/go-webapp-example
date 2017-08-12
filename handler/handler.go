@@ -14,7 +14,7 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response.SendJson(w, issue)
+	response.Succeed(w, issue)
 }
 
 func GetIssues(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +23,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 		response.Fail(w, err)
 		return
 	}
-	response.SendJson(w, issues)
+	response.Succeed(w, issues)
 }
 
 func GetHello(w http.ResponseWriter, r *http.Request) {

@@ -3,7 +3,7 @@ package response
 import "net/http"
 import "encoding/json"
 
-func SendJson(w http.ResponseWriter, v interface{}) {
+func Succeed(w http.ResponseWriter, v interface{}) {
 	b, err := json.Marshal(v)
 	if err != nil {
 		w.WriteHeader(500)
