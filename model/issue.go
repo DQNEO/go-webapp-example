@@ -27,6 +27,6 @@ func FindIssue(id int) (Issue, error) {
 	return Issue{}, e
 }
 
-func GetIssues() ([]Issue,error) {
+func GetIssues() ([]Issue, error) {
 	return issues, nil
 }
