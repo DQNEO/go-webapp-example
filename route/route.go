@@ -3,15 +3,15 @@ package route
 import "net/http"
 import "../handler"
 
-func GET(path string , h func(http.ResponseWriter, *http.Request)) {
+func Get(path string , h func(http.ResponseWriter, *http.Request)) {
 	http.HandleFunc(path, h)
 }
 
 func Register() {
-	GET("/hello", handler.GetHello)
-	GET("/hello.html", handler.GetHelloHTML)
-	GET("/hello.json", handler.GetHelloJson)
-	GET("/issues", handler.GetIssues)
-	GET("/issues/1", handler.GetIssue1)
+	Get("/hello", handler.GetHello)
+	Get("/hello.html", handler.GetHelloHTML)
+	Get("/hello.json", handler.GetHelloJson)
+	Get("/issues", handler.GetIssues)
+	Get("/issues/1", handler.GetIssue1)
 }
 
