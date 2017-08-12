@@ -21,7 +21,7 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }
 
@@ -33,6 +33,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }
 
