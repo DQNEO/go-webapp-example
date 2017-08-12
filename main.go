@@ -3,12 +3,16 @@ import "./handler"
 import "net/http"
 import "log"
 
+func GET(path string , h func(http.ResponseWriter, *http.Request)) {
+	http.HandleFunc(path, h)
+}
+
 func Register() {
-	http.HandleFunc("/hello", handler.GetHello)
-	http.HandleFunc("/hello.html", handler.GetHelloHTML)
-	http.HandleFunc("/hello.json", handler.GetHelloJson)
-	http.HandleFunc("/issues", handler.GetIssues)
-	http.HandleFunc("/issues/1", handler.GetIssue1)
+	GET("/hello", handler.GetHello)
+	GET("/hello.html", handler.GetHelloHTML)
+	GET("/hello.json", handler.GetHelloJson)
+	GET("/issues", handler.GetIssues)
+	GET("/issues/1", handler.GetIssue1)
 }
 
 func main() {
