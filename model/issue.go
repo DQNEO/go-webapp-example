@@ -17,7 +17,7 @@ func (s e) Error() string {
 }
 
 func FindIssue(id int) (Issue, error) {
-	for id, issue := range(issues) {
+	for _, issue := range(issues) {
 		if issue.Id == id {
 			return issue,nil
 		}
