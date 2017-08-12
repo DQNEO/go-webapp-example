@@ -19,7 +19,11 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetIssues(w http.ResponseWriter, r *http.Request) {
-	issues := model.GetIssues()
+	issues, err := model.GetIssues()
+	if err != nil {
+		w.WriteHeader(500) // or can be 404
+		w.Write([]byte(err.Error()))
+	}
 	response.SendJson(w, issues)
 }
 
