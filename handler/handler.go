@@ -4,7 +4,7 @@ import "net/http"
 import "fmt"
 import "html"
 import "../model"
-import "encoding/json"
+import "../response"
 
 func GetIssue1(w http.ResponseWriter, r *http.Request) {
 	id := 1
@@ -15,26 +15,12 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	b,err := json.Marshal(issue)
-	if err != nil {
-		w.WriteHeader(500)
-		w.Write([]byte(err.Error()))
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(b)
+	response.SendJson(w, issue)
 }
 
 func GetIssues(w http.ResponseWriter, r *http.Request) {
 	issues := model.GetIssues()
-	b, err := json.Marshal(issues)
-	if err != nil {
-		w.WriteHeader(500)
-		w.Write([]byte(err.Error()))
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(b)
+	response.SendJson(w, issues)
 }
 
 func GetHello(w http.ResponseWriter, r *http.Request) {
