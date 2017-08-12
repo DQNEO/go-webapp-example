@@ -10,6 +10,11 @@ type Issue struct {
 	Name string
 }
 
+var issues = []Issue{
+	{Id:1, Name:"I need a help"},
+	{Id:2, Name:"I need another help"},
+}
+
 func getIssue(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `%v`, issues[0])
 }
@@ -30,10 +35,6 @@ func main() {
 		fmt.Fprint(w, `{"msg":"hello"}`)
 	})
 
-	issues := []Issue{
-		Issue{Id:1, Name:"I need a help"},
-		Issue{Id:2, Name:"I need another help"},
-	}
 
 	http.HandleFunc("/issues", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, `%v`, issues)
