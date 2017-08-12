@@ -4,13 +4,23 @@ import "net/http"
 import "fmt"
 import "html"
 import "../model"
-import "../response"
+import (
+	"../response"
+	"strconv"
+)
+
+var URLParam [][]string
 
 func GetIssue1(w http.ResponseWriter, r *http.Request) {
-	id := 1
+	id, err := strconv.Atoi(URLParam[0][1])
+	if err != nil {
+		response.Fail(w, err) // should be 404
+		return
+	}
+
 	issue, err := model.FindIssue(id)
 	if err != nil {
-		response.Fail(w, err)
+		response.Fail(w, err) // can be 404 or 500
 		return
 	}
 
