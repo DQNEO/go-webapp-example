@@ -10,6 +10,10 @@ type Issue struct {
 	Name string
 }
 
+func getIssue(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, `%v`, issues[0])
+}
+
 func main() {
 
 	//http.Handle("/foo", fooHandler)
@@ -35,10 +39,7 @@ func main() {
 		fmt.Fprintf(w, `%v`, issues)
 	})
 
-	http.HandleFunc("/issues/1", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w,`%v`, issues[0])
-	})
-
+	http.HandleFunc("/issues/1", getIssue)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
