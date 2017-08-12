@@ -10,8 +10,8 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 	id := 1
 	issue, err := model.FindIssue(id)
 	if err != nil {
+		w.WriteHeader(500) // or can be 404
 		w.Write([]byte(err.Error()))
-		w.WriteHeader(404)
 		return
 	}
 
