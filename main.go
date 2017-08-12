@@ -15,7 +15,7 @@ var issues = []Issue{
 	{Id:2, Name:"I need another help"},
 }
 
-func getIssue(w http.ResponseWriter, r *http.Request) {
+func getIssue1(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `%v`, issues[0])
 }
 
@@ -46,7 +46,7 @@ func main() {
 
 	http.HandleFunc("/issues", getIssues)
 
-	http.HandleFunc("/issues/1", getIssue)
+	http.HandleFunc("/issues/1", getIssue1)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
