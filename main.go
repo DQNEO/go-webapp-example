@@ -19,26 +19,32 @@ func getIssue(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `%v`, issues[0])
 }
 
+func getIssues(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, `%v`, issues)
+}
+
+func getHello(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "path is %q", html.EscapeString(r.URL.Path))
+}
+
+func getHelloHTML(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello world")
+}
+
+func getHelloJson(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, `{"msg":"hello"}`)
+}
 func main() {
 
 	//http.Handle("/foo", fooHandler)
 
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "path is %q", html.EscapeString(r.URL.Path))
-	})
+	http.HandleFunc("/hello", getHello)
 
-	http.HandleFunc("/hello.html", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello world")
-	})
+	http.HandleFunc("/hello.html", getHelloHTML)
 
-	http.HandleFunc("/hello.json", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, `{"msg":"hello"}`)
-	})
+	http.HandleFunc("/hello.json", getHelloJson)
 
-
-	http.HandleFunc("/issues", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, `%v`, issues)
-	})
+	http.HandleFunc("/issues", getIssues)
 
 	http.HandleFunc("/issues/1", getIssue)
 
