@@ -10,7 +10,6 @@ func GetIssue1(w http.ResponseWriter, r *http.Request) {
 	issue, err := model.FindIssue(id)
 	if err != nil {
 		w.Write([]byte(err.Error()))
-		w.Write([]byte("Record Not Found"))
 		w.WriteHeader(404)
 		return
 	}
