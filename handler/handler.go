@@ -2,7 +2,6 @@ package handler
 
 import "net/http"
 import "fmt"
-import "html"
 import "../model"
 import (
 	"../response"
@@ -37,7 +36,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "path is %q", html.EscapeString(r.URL.Path))
+	fmt.Fprintln(w, "get hello")
 }
 
 func GetHelloHTML(w http.ResponseWriter, r *http.Request) {
