@@ -51,7 +51,7 @@ func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func Register() *Router {
+func NewRouter() *Router {
 	rt := &Router{}
 
 	rt.SimpleMaps = make(map[string]map[string]http.HandlerFunc)
@@ -60,6 +60,11 @@ func Register() *Router {
 	rt.RegexMaps["GET"] = make(map[*regexp.Regexp]http.HandlerFunc)
 	rt.SimpleMaps["POST"] = make(map[string]http.HandlerFunc)
 	rt.RegexMaps["POST"] = make(map[*regexp.Regexp]http.HandlerFunc)
+	return rt
+}
+
+func Register() *Router {
+	rt := NewRouter()
 
 	rt.Get("/hello", handler.GetHello)
 	rt.Get("/hello.html", handler.GetHelloHTML)
