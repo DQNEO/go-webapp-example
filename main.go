@@ -82,7 +82,7 @@ func Register() *Router {
 	rt.Get("/hello.html", handler.GetHelloHTML)
 	rt.Get("/hello.json", handler.GetHelloJson)
 	rt.Get("/issues", handler.GetIssues)
-	rt.Get("/issues/{id}", handler.GetIssue1)
+	rt.Get("/issues/{id}", handler.GetIssue)
 
 	rt.Post("/hello", handler.PostHello)
 

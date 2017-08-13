@@ -10,7 +10,7 @@ import (
 
 var URLParam [][]string
 
-func GetIssue1(w http.ResponseWriter, r *http.Request) {
+func GetIssue(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(URLParam[0][1])
 	if err != nil {
 		response.Fail(w, err) // should be 404
