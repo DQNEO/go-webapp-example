@@ -8,37 +8,37 @@ import (
 	"strings"
 )
 
-type Mux struct {
+type Router struct {
 	SimpleMaps map[string] map[string] http.HandlerFunc
 	RegexMaps  map[string] map[*regexp.Regexp] http.HandlerFunc
 }
 
-func(mux *Mux) RegisterHandler(method string ,pattern string, h func(http.ResponseWriter, *http.Request)) {
+func(rt *Router) RegisterHandler(method string ,pattern string, h func(http.ResponseWriter, *http.Request)) {
 	if strings.Contains(pattern, "{id}") {
 		newPattern := strings.Replace(pattern,"{id}", "([a-zA-Z0-9]+)", -1)
 		reg := regexp.MustCompile(newPattern)
-		mux.RegexMaps[method][reg] = http.HandlerFunc(h)
+		rt.RegexMaps[method][reg] = http.HandlerFunc(h)
 	} else {
-		mux.SimpleMaps[method][pattern] = http.HandlerFunc(h)
+		rt.SimpleMaps[method][pattern] = http.HandlerFunc(h)
 	}
 }
 
-func(mux *Mux) Get(pattern string, h func(http.ResponseWriter, *http.Request)) {
-	mux.RegisterHandler("GET", pattern, h)
+func(rt *Router) Get(pattern string, h func(http.ResponseWriter, *http.Request)) {
+	rt.RegisterHandler("GET", pattern, h)
 }
 
-func(mux *Mux) Post(pattern string, h func(http.ResponseWriter, *http.Request)) {
-	mux.RegisterHandler("POST", pattern, h)
+func(rt *Router) Post(pattern string, h func(http.ResponseWriter, *http.Request)) {
+	rt.RegisterHandler("POST", pattern, h)
 }
 
-func(mux *Mux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func(rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// test complete match
-	if k,ok := mux.SimpleMaps[r.Method][r.URL.Path]; ok {
+	if k,ok := rt.SimpleMaps[r.Method][r.URL.Path]; ok {
 		k(w, r)
 		return
 	}
 
-	for reg,h := range(mux.RegexMaps[r.Method]) {
+	for reg,h := range(rt.RegexMaps[r.Method]) {
 		if matches := reg.FindAllStringSubmatch(r.URL.Path, -1); matches != nil {
 			handler.URLParam = matches
 			h(w, r)
@@ -51,31 +51,31 @@ func(mux *Mux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func Register() *Mux {
-	mux := &Mux{}
+func Register() *Router {
+	rt := &Router{}
 
-	mux.SimpleMaps = make(map[string] map[string] http.HandlerFunc)
-	mux.RegexMaps = make(map[string] map[*regexp.Regexp] http.HandlerFunc)
-	mux.SimpleMaps["GET"] = make(map[string]http.HandlerFunc)
-	mux.RegexMaps["GET"] = make(map[*regexp.Regexp] http.HandlerFunc)
-	mux.SimpleMaps["POST"] = make(map[string]http.HandlerFunc)
-	mux.RegexMaps["POST"] = make(map[*regexp.Regexp] http.HandlerFunc)
+	rt.SimpleMaps = make(map[string] map[string] http.HandlerFunc)
+	rt.RegexMaps = make(map[string] map[*regexp.Regexp] http.HandlerFunc)
+	rt.SimpleMaps["GET"] = make(map[string]http.HandlerFunc)
+	rt.RegexMaps["GET"] = make(map[*regexp.Regexp] http.HandlerFunc)
+	rt.SimpleMaps["POST"] = make(map[string]http.HandlerFunc)
+	rt.RegexMaps["POST"] = make(map[*regexp.Regexp] http.HandlerFunc)
 
-	mux.Get("/hello", handler.GetHello)
-	mux.Get("/hello.html", handler.GetHelloHTML)
-	mux.Get("/hello.json", handler.GetHelloJson)
-	mux.Get("/issues", handler.GetIssues)
-	mux.Get("/issues/{id}", handler.GetIssue1)
+	rt.Get("/hello", handler.GetHello)
+	rt.Get("/hello.html", handler.GetHelloHTML)
+	rt.Get("/hello.json", handler.GetHelloJson)
+	rt.Get("/issues", handler.GetIssues)
+	rt.Get("/issues/{id}", handler.GetIssue1)
 
-	mux.Post("/hello", handler.PostHello)
+	rt.Post("/hello", handler.PostHello)
 
-	return mux
+	return rt
 }
 
 func main() {
 
-	mux := Register()
-	handler := http.Handler(mux)
+	rt := Register()
+	handler := http.Handler(rt)
 	log.Fatal(http.ListenAndServe(":8080", handler))
 
 }
