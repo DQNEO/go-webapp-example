@@ -11,7 +11,7 @@ import (
 var URLParam [][]string
 
 func GetIssue(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(URLParam[0][1])
+	id, err := strconv.Atoi(URLParam[0][1]) // ugly!
 	if err != nil {
 		response.Fail(w, err) // should be 404
 		return
