@@ -8,14 +8,23 @@ import "regexp"
 
 type Mux struct {
 	Matched string
+	GetMap map[string] http.HandlerFunc
 }
 
 func(mux *Mux) Get(pattern string, h func(http.ResponseWriter, *http.Request)) {
-	//mux.Handle(path, http.HandlerFunc(h))
+	if mux.GetMap == nil {
+		mux.GetMap = make(map[string]http.HandlerFunc)
+	}
+	mux.GetMap[pattern] = http.HandlerFunc(h)
 }
 
 func(mux *Mux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
+		// test complete match
+		if k,ok := mux.GetMap[r.URL.Path]; ok {
+			k(w, r)
+			return
+		}
 		reg := regexp.MustCompile(`/issues/([a-zA-Z0-9]+)`)
 		if matches := reg.FindAllStringSubmatch(r.URL.Path, -1); matches != nil {
 			handler.URLParam = matches
