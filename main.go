@@ -31,6 +31,14 @@ func (rt *Router) Post(pattern string, h func(http.ResponseWriter, *http.Request
 	rt.RegisterHandler("POST", pattern, h)
 }
 
+func (rt *Router) Put(pattern string, h func(http.ResponseWriter, *http.Request)) {
+	rt.RegisterHandler("PUT", pattern, h)
+}
+
+func (rt *Router) Delete(pattern string, h func(http.ResponseWriter, *http.Request)) {
+	rt.RegisterHandler("DELETE", pattern, h)
+}
+
 func (rt *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// test complete match
 	if k, ok := rt.SimpleMaps[r.Method][r.URL.Path]; ok {
@@ -60,6 +68,10 @@ func NewRouter() *Router {
 	rt.RegexMaps["GET"] = make(map[*regexp.Regexp]http.HandlerFunc)
 	rt.SimpleMaps["POST"] = make(map[string]http.HandlerFunc)
 	rt.RegexMaps["POST"] = make(map[*regexp.Regexp]http.HandlerFunc)
+	rt.SimpleMaps["PUT"] = make(map[string]http.HandlerFunc)
+	rt.RegexMaps["PUT"] = make(map[*regexp.Regexp]http.HandlerFunc)
+	rt.SimpleMaps["DELETE"] = make(map[string]http.HandlerFunc)
+	rt.RegexMaps["DELETE"] = make(map[*regexp.Regexp]http.HandlerFunc)
 	return rt
 }
 
