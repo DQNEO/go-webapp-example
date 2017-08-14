@@ -36,7 +36,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateIssue(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, `{"msg":"ok"}`)
+	w.WriteHeader(204)
 }
 
 func UpdateIssue(w http.ResponseWriter, r *http.Request) {
