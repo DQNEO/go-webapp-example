@@ -36,7 +36,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "get hello")
+	fmt.Fprintln(w, `{"msg":"hello"}`)
 }
 
 func PostHello(w http.ResponseWriter, r *http.Request) {
