@@ -79,8 +79,6 @@ func Register() *Router {
 	rt := NewRouter()
 
 	rt.Get("/hello", handler.GetHello)
-	rt.Get("/hello.html", handler.GetHelloHTML)
-	rt.Get("/hello.json", handler.GetHelloJson)
 	rt.Get("/issues", handler.GetIssues)
 	rt.Get("/issues/{id}", handler.GetIssue)
 

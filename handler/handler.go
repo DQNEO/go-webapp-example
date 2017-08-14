@@ -43,10 +43,3 @@ func PostHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "post hello")
 }
 
-func GetHelloHTML(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello world")
-}
-
-func GetHelloJson(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, `{"msg":"hello"}`)
-}
