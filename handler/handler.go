@@ -35,6 +35,18 @@ func GetAllIssues(w http.ResponseWriter, r *http.Request) {
 	response.Succeed(w, issues)
 }
 
+func SearchIssues(w http.ResponseWriter, r *http.Request) {
+	issues, err := model.GetIssues()
+	if err != nil {
+		response.Fail(w, err)
+		return
+	}
+
+	//name := r.URL.Query("name")
+
+	response.Succeed(w, issues)
+}
+
 func CreateIssue(w http.ResponseWriter, r *http.Request) {
 	response.SucceedWithNoContent(w);
 }
