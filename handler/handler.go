@@ -26,7 +26,7 @@ func GetIssue(w http.ResponseWriter, r *http.Request) {
 	response.Succeed(w, issue)
 }
 
-func GetIssues(w http.ResponseWriter, r *http.Request) {
+func GetAllIssues(w http.ResponseWriter, r *http.Request) {
 	issues, err := model.GetIssues()
 	if err != nil {
 		response.Fail(w, err)
