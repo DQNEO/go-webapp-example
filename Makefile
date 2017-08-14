@@ -3,3 +3,7 @@ run:
 
 fmt:
 	gofmt -w .
+
+test:
+	./test.sh
+
