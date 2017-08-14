@@ -3,6 +3,10 @@ package response
 import "net/http"
 import "encoding/json"
 
+func SucceedWithNoContent(w http.ResponseWriter) {
+	w.WriteHeader(204)
+}
+
 func Succeed(w http.ResponseWriter, v interface{}) {
 	b, err := json.Marshal(v)
 	if err != nil {

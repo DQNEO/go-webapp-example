@@ -36,7 +36,7 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateIssue(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(204)
+	response.SucceedWithNoContent(w);
 }
 
 func UpdateIssue(w http.ResponseWriter, r *http.Request) {
