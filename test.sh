@@ -2,7 +2,7 @@
 set -e
 set -x
 
-BASE_URL=http://localhost:9000
+BASE_URL=http://localhost:9001
 mkdir -p .test
 
 # test GET
