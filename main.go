@@ -85,7 +85,9 @@ func Register() *Router {
 
 	rt.Get("/issues", handler.GetIssues)
 	rt.Get("/issues/{id}", handler.GetIssue)
-
+	rt.Post("/issues", handler.CreateIssue)
+	rt.Put("/issues/{id}", handler.UpdateIssue)
+	rt.Delete("/issues/{id}", handler.DeleteIssue)
 	return rt
 }
 

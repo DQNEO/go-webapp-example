@@ -35,6 +35,18 @@ func GetIssues(w http.ResponseWriter, r *http.Request) {
 	response.Succeed(w, issues)
 }
 
+func CreateIssue(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `{"msg":"ok"}`)
+}
+
+func UpdateIssue(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `{"msg":"ok"}`)
+}
+
+func DeleteIssue(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `{"msg":"ok"}`)
+}
+
 func PutHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"msg":"put hello"}`)
 }
