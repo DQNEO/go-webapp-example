@@ -79,10 +79,10 @@ func Register() *Router {
 	rt := NewRouter()
 
 	rt.Get("/hello", handler.GetHello)
+	rt.Post("/hello", handler.PostHello)
+
 	rt.Get("/issues", handler.GetIssues)
 	rt.Get("/issues/{id}", handler.GetIssue)
-
-	rt.Post("/hello", handler.PostHello)
 
 	return rt
 }
