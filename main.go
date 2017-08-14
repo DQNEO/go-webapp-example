@@ -80,6 +80,8 @@ func Register() *Router {
 
 	rt.Get("/hello", handler.GetHello)
 	rt.Post("/hello", handler.PostHello)
+	rt.Put("/hello", handler.PutHello)
+	rt.Delete("/hello", handler.DeleteHello)
 
 	rt.Get("/issues", handler.GetIssues)
 	rt.Get("/issues/{id}", handler.GetIssue)
