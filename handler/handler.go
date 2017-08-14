@@ -40,6 +40,6 @@ func GetHello(w http.ResponseWriter, r *http.Request) {
 }
 
 func PostHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "post hello")
+	fmt.Fprintln(w, `{"msg":"post hello"}`)
 }
 
