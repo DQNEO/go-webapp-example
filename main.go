@@ -9,6 +9,8 @@ import (
 	"fmt"
 )
 
+const defaultPort = 9001
+
 type Router struct {
 	SimpleMaps map[string]map[string]http.HandlerFunc
 	RegexMaps  map[string]map[*regexp.Regexp]http.HandlerFunc
@@ -97,7 +99,6 @@ func main() {
 
 	rt := Register()
 	handler := http.Handler(rt)
-	defaultPort := 9001
 	port := defaultPort
 	log.Printf("starting server : http://localhost:%d\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d",port), handler))
