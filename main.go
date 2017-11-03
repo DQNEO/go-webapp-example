@@ -1,11 +1,11 @@
 package main
 
-import "net/http"
-import "log"
-import "./router"
-import "./route"
 import (
+	"./route"
+	"./router"
 	"fmt"
+	"log"
+	"net/http"
 )
 
 const defaultPort = 9001

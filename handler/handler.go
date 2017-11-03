@@ -1,11 +1,11 @@
 package handler
 
-import "net/http"
-import "fmt"
-import "../model"
 import (
+	"../model"
 	"../response"
 	"../router"
+	"fmt"
+	"net/http"
 	"strconv"
 )
 

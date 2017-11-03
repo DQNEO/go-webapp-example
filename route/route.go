@@ -1,7 +1,9 @@
 package route
 
-import "../router"
-import "../handler"
+import (
+	"../handler"
+	"../router"
+)
 
 func Register(rt *router.Router) *router.Router {
 
