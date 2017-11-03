@@ -58,6 +58,10 @@ func DeleteIssue(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"msg":"ok"}`)
 }
 
+func GetIndex(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `{"msg":"ok"}`)
+}
+
 func PutHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"msg":"put hello"}`)
 }

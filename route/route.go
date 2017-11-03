@@ -5,6 +5,8 @@ import "../handler"
 
 func Register(rt *router.Router) *router.Router {
 
+	rt.Get("/", handler.GetIndex)
+
 	rt.Get("/hello", handler.GetHello)
 	rt.Post("/hello", handler.PostHello)
 	rt.Put("/hello", handler.PutHello)
