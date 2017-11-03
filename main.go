@@ -6,6 +6,7 @@ import "./handler"
 import (
 	"regexp"
 	"strings"
+	"fmt"
 )
 
 type Router struct {
@@ -96,6 +97,9 @@ func main() {
 
 	rt := Register()
 	handler := http.Handler(rt)
-	log.Fatal(http.ListenAndServe(":9001", handler))
+	defaultPort := 9001
+	port := defaultPort
+	log.Printf("starting server : http://localhost:%d\n", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d",port), handler))
 
 }
