@@ -18,4 +18,3 @@ func Register(rt *router.Router) *router.Router {
 	rt.Delete("/issues/{id}", handler.DeleteIssue)
 	return rt
 }
-

@@ -74,4 +74,3 @@ func NewRouter() *Router {
 	rt.RegexMaps["DELETE"] = make(map[*regexp.Regexp]http.HandlerFunc)
 	return rt
 }
-

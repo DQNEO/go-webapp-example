@@ -47,7 +47,7 @@ func SearchIssues(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateIssue(w http.ResponseWriter, r *http.Request) {
-	response.SucceedWithNoContent(w);
+	response.SucceedWithNoContent(w)
 }
 
 func UpdateIssue(w http.ResponseWriter, r *http.Request) {
@@ -73,4 +73,3 @@ func GetHello(w http.ResponseWriter, r *http.Request) {
 func PostHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `{"msg":"post hello"}`)
 }
-

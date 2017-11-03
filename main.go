@@ -16,6 +16,6 @@ func main() {
 	handler := http.Handler(rt)
 	port := defaultPort
 	log.Printf("starting server : http://localhost:%d\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d",port), handler))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), handler))
 
 }
