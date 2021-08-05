@@ -1,12 +1,12 @@
 package handler
 
 import (
-	"../model"
-	"../response"
-	"../router"
 	"fmt"
 	"net/http"
 	"strconv"
+	"github.com/DQNEO/go-webapp-example/model"
+	"github.com/DQNEO/go-webapp-example/response"
+	"github.com/DQNEO/go-webapp-example/router"
 )
 
 func GetIssue(w http.ResponseWriter, r *http.Request) {

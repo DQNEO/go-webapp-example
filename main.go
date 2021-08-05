@@ -1,8 +1,9 @@
 package main
 
 import (
-	"./route"
-	"./router"
+	"github.com/DQNEO/go-webapp-example/route"
+	"github.com/DQNEO/go-webapp-example/router"
+
 	"fmt"
 	"log"
 	"net/http"

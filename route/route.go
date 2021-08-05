@@ -1,8 +1,8 @@
 package route
 
 import (
-	"../handler"
-	"../router"
+	"github.com/DQNEO/go-webapp-example/handler"
+	"github.com/DQNEO/go-webapp-example/router"
 )
 
 func Register(rt *router.Router) *router.Router {
